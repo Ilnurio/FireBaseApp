@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginViewController: UIViewController {
     
@@ -15,6 +16,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        warnLabel.alpha = 0
         
         NotificationCenter.default.addObserver(
             self,
@@ -48,9 +51,46 @@ class LoginViewController: UIViewController {
             height: self.view.bounds.size.height
         )
     }
+    
+    func displayWarningLabel(with text: String) {
+        warnLabel.text = text
+        
+        UIView.animate(
+            withDuration: 3,
+            delay: 0,
+            usingSpringWithDamping: 1,
+            initialSpringVelocity: 1,
+            options: .curveEaseInOut,
+            animations: { [weak self] in self?.warnLabel.alpha = 1 },
+            completion: { [weak self]  complete in self?.warnLabel.alpha = 0 }
+        )
+    }
 
     @IBAction func loginTapped(_ sender: UIButton) {
+        guard let email = emailTextField.text,
+              let password = passwordTextField.text,
+              email != "",
+              password != ""
+        else {
+            displayWarningLabel(with: "Info is incorrect")
+            return
+        }
         
+        Auth.auth().signIn(
+            withEmail: email,
+            password: password) { [weak self] (user, error) in
+                if error != nil {
+                    self?.displayWarningLabel(with: "Error occured")
+                    return
+                }
+                
+                if user != nil {
+                    self?.performSegue(withIdentifier: "tasksSegue", sender: nil)
+                    return
+                }
+                
+                self?.displayWarningLabel(with: "No such users")
+            }
     }
     
     @IBAction func registerTapped(_ sender: UIButton) {

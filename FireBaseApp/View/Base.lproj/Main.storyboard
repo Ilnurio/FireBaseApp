@@ -70,7 +70,6 @@
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="loginTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9rs-j2-mUh"/>
-                                                    <segue destination="5lb-fA-wFa" kind="presentation" identifier="tasksSegue" modalPresentationStyle="fullScreen" id="A7n-13-wkG"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ou-dC-vyZ">
@@ -114,6 +113,7 @@
                         <outlet property="emailTextField" destination="ZRg-zO-5DN" id="aTW-fO-tqj"/>
                         <outlet property="passwordTextField" destination="N4E-7V-FDb" id="UGA-cH-xfm"/>
                         <outlet property="warnLabel" destination="X3d-en-Xmc" id="DAO-kq-vc9"/>
+                        <segue destination="5lb-fA-wFa" kind="show" identifier="tasksSegue" id="rp0-9a-Jhe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -125,11 +125,11 @@
             <objects>
                 <viewController id="ymW-wf-CzA" customClass="TasksViewController" customModule="FireBaseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="P79-Bw-kjb">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="5E0-Us-z03">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                                 <color key="backgroundColor" systemColor="systemCyanColor"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -180,7 +180,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="M8o-Bq-p9e"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OUc-dM-q0w">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

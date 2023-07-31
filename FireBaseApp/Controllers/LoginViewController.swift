@@ -10,6 +10,8 @@ import Firebase
 
 class LoginViewController: UIViewController {
     
+    private let segueIdentifier = "tasksSegue"
+    
     @IBOutlet var warnLabel: UILabel!
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
@@ -18,6 +20,16 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         warnLabel.alpha = 0
+        
+        // checking if user change his accaunt
+        Auth.auth().addStateDidChangeListener {[weak self] (auth, user) in
+            if user != nil {
+                self?.performSegue(
+                    withIdentifier: (self?.segueIdentifier)!,
+                    sender: nil
+                )
+            }
+        }
         
         NotificationCenter.default.addObserver(
             self,
@@ -85,7 +97,10 @@ class LoginViewController: UIViewController {
                 }
                 
                 if user != nil {
-                    self?.performSegue(withIdentifier: "tasksSegue", sender: nil)
+                    self?.performSegue(
+                        withIdentifier: (self?.segueIdentifier)!,
+                        sender: nil
+                    )
                     return
                 }
                 
@@ -94,8 +109,25 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func registerTapped(_ sender: UIButton) {
+        guard let email = emailTextField.text,
+              let password = passwordTextField.text,
+              email != "",
+              password != ""
+        else {
+            displayWarningLabel(with: "Info is incorrect")
+            return
+        }
         
+        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+            if error == nil {
+                if user != nil {
+                    
+                } else {
+                    print("user is not created")
+                }
+            } else {
+                print(error!.localizedDescription)
+            }
+        }
     }
-    
 }
-

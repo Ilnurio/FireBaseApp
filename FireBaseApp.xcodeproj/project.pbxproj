@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4615E6382A780A56003A218D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4615E6372A780A56003A218D /* User.swift */; };
+		4615E63A2A780A6D003A218D /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4615E6392A780A6D003A218D /* Task.swift */; };
 		46E78C6F2A76E84E00DC5FB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E78C6E2A76E84E00DC5FB8 /* AppDelegate.swift */; };
 		46E78C712A76E84E00DC5FB8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E78C702A76E84E00DC5FB8 /* SceneDelegate.swift */; };
 		46E78C732A76E84E00DC5FB8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E78C722A76E84E00DC5FB8 /* LoginViewController.swift */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4615E6372A780A56003A218D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4615E6392A780A6D003A218D /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		46E78C6B2A76E84E00DC5FB8 /* FireBaseApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireBaseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46E78C6E2A76E84E00DC5FB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46E78C702A76E84E00DC5FB8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +55,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4615E6362A780A1C003A218D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4615E6372A780A56003A218D /* User.swift */,
+				4615E6392A780A6D003A218D /* Task.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		46E78C622A76E84E00DC5FB8 = {
 			isa = PBXGroup;
 			children = (
@@ -70,10 +83,10 @@
 		46E78C6D2A76E84E00DC5FB8 /* FireBaseApp */ = {
 			isa = PBXGroup;
 			children = (
+				4615E6362A780A1C003A218D /* Models */,
 				46E78C852A76FF3B00DC5FB8 /* Controllers */,
 				46E78C842A76FEEA00DC5FB8 /* View */,
 				46E78C862A76FF5100DC5FB8 /* Supporting files */,
-				46E78C772A76E84E00DC5FB8 /* Assets.xcassets */,
 				46E78C7C2A76E84E00DC5FB8 /* Info.plist */,
 				46E78C872A77046400DC5FB8 /* GoogleService-Info.plist */,
 			);
@@ -101,6 +114,7 @@
 		46E78C862A76FF5100DC5FB8 /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
+				46E78C772A76E84E00DC5FB8 /* Assets.xcassets */,
 				46E78C6E2A76E84E00DC5FB8 /* AppDelegate.swift */,
 				46E78C702A76E84E00DC5FB8 /* SceneDelegate.swift */,
 			);
@@ -192,6 +206,8 @@
 				46E78C732A76E84E00DC5FB8 /* LoginViewController.swift in Sources */,
 				46E78C832A76FED500DC5FB8 /* TasksViewController.swift in Sources */,
 				46E78C6F2A76E84E00DC5FB8 /* AppDelegate.swift in Sources */,
+				4615E6382A780A56003A218D /* User.swift in Sources */,
+				4615E63A2A780A6D003A218D /* Task.swift in Sources */,
 				46E78C712A76E84E00DC5FB8 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

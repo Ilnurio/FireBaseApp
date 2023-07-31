@@ -45,6 +45,13 @@ class LoginViewController: UIViewController {
         )
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        emailTextField.text = ""
+        passwordTextField.text = ""
+    }
+    
     @objc func kbDidShow(notification: Notification) {
         guard let userinfo = notification.userInfo else { return }
         let kbFrameSize = (userinfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue

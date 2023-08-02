@@ -11,6 +11,8 @@ import Firebase
 class LoginViewController: UIViewController {
     
     private let segueIdentifier = "tasksSegue"
+    var ref: DatabaseReference!
+    var user: Person!
     
     @IBOutlet var warnLabel: UILabel!
     @IBOutlet var emailTextField: UITextField!
@@ -21,15 +23,7 @@ class LoginViewController: UIViewController {
         
         warnLabel.alpha = 0
         
-        // checking if user change his accaunt
-        Auth.auth().addStateDidChangeListener {[weak self] (auth, user) in
-            if user != nil {
-                self?.performSegue(
-                    withIdentifier: (self?.segueIdentifier)!,
-                    sender: nil
-                )
-            }
-        }
+        ref = Database.database().reference(withPath: "users")
         
         NotificationCenter.default.addObserver(
             self,
@@ -43,6 +37,16 @@ class LoginViewController: UIViewController {
             name: UIResponder.keyboardDidHideNotification,
             object: nil
         )
+        
+        // checking if user change his accaunt
+        Auth.auth().addStateDidChangeListener {[weak self] (auth, user) in
+            if user != nil {
+                self?.performSegue(
+                    withIdentifier: (self?.segueIdentifier)!,
+                    sender: nil
+                )
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,15 +130,14 @@ class LoginViewController: UIViewController {
         }
         
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-            if error == nil {
-                if user != nil {
-                    
-                } else {
-                    print("user is not created")
-                }
-            } else {
-                print(error!.localizedDescription)
+            guard error == nil, user != nil else {
+                
+                print(error?.localizedDescription ?? "")
+                return
             }
+            
+            let userRef = self.ref.child((user?.user.uid)!)
+            userRef.setValue(["email": user?.user.email])
         }
     }
 }

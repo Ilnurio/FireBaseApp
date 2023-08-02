@@ -50,6 +50,7 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
             style: .default) { [weak self] _ in
                 guard let textField =
                         alertController.textFields?.first, textField.text != "" else { return }
+                // создаем задачу(cсылку) для создания данных
                 let task = Task(title: textField.text!, userId: (self?.user.uid)!)
                 let taskRef = self?.ref.child(task.title.lowercased())
                 taskRef?.setValue(task.convertToDictionary())

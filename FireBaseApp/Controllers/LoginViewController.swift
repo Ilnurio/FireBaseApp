@@ -12,7 +12,6 @@ class LoginViewController: UIViewController {
     
     private let segueIdentifier = "tasksSegue"
     var ref: DatabaseReference!
-    var user: Person!
     
     @IBOutlet var warnLabel: UILabel!
     @IBOutlet var emailTextField: UITextField!
@@ -129,15 +128,16 @@ class LoginViewController: UIViewController {
             return
         }
         
-        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+        Auth.auth().createUser(withEmail: email, password: password) { [weak self] (user, error) in
+            
             guard error == nil, user != nil else {
                 
-                print(error?.localizedDescription ?? "")
+                print(error!.localizedDescription)
                 return
             }
             
-            let userRef = self.ref.child((user?.user.uid)!)
-            userRef.setValue(["email": user?.user.email])
+            let userRef = self?.ref.child((user?.user.uid)!)
+            userRef?.setValue(["email": user?.user.email])
         }
     }
 }

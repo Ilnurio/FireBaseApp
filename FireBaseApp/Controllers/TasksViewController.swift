@@ -20,7 +20,7 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         
         guard let currentUser = Auth.auth().currentUser else { return }
-        user = Person(user: currentUser)
+        user = Person(person: currentUser)
         ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("tasks")
     }
     

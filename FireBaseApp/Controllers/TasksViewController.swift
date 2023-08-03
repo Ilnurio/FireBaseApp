@@ -52,11 +52,15 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let task = tasks[indexPath.row]
+        let taskTitle = task.title
+        let isCompleted = task.completed
         
         cell.backgroundColor = .clear
         cell.textLabel?.textColor = .white
-        let taskTitle = tasks[indexPath.row].title
         cell.textLabel?.text = taskTitle
+        
+        toggleCompletion(cell, isCompleted: isCompleted)
         
         return cell
     }
@@ -71,6 +75,21 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let task = tasks[indexPath.row]
             task.ref?.removeValue()
         }
+    }
+    
+    // добавляем функционал по нажатию на задачу выполнения кода, что задача done
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+        let task = tasks[indexPath.row]
+        let isCompleted = !task.completed
+        
+        toggleCompletion(cell, isCompleted: isCompleted)
+        task.ref?.updateChildValues(["completed": isCompleted])
+    }
+    
+    // отрисовка галочки по выполнению задачи
+    func toggleCompletion(_ cell: UITableViewCell, isCompleted: Bool) {
+        cell.accessoryType = isCompleted ? .checkmark : .none
     }
     
     @IBAction func addTapped(_ sender: UIBarButtonItem) {
